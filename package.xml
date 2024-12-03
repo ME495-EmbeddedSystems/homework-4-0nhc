@@ -3,9 +3,13 @@
 <package format="3">
   <name>nubot_nav</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="thefoxfoxfox@outlook.com">zhengxiao-han</maintainer>
+  <description>This package contains navigation application for nubot</description>
+  <maintainer email="hanzx@u.northwestern.edu">Zhengxiao Han</maintainer>
   <license>WTFPL</license>
+
+  <depend>slam_toolbox</depend>
+  <depend>cartographer_ros</depend>
+  <depend>nav2_bringup</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

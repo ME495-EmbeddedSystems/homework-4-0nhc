@@ -1,0 +1,2 @@
+
+[1] This Nav2 config file is originated from my previous open-source projecct (Mini Pupper), which was originally developed by me. Link: https://github.com/mangdangroboticsclub/mini_pupper_ros/blob/ros2-dev/mini_pupper_navigation/param/mini_pupper.yaml
