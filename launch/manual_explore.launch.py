@@ -12,11 +12,9 @@
 
 #   0. You just DO WHAT THE FUCK YOU WANT TO.
 
-import os
-
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.conditions import IfCondition, UnlessCondition
+from launch.conditions import UnlessCondition
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, \
     TextSubstitution
 
@@ -132,7 +130,7 @@ def generate_launch_description():
         ]
     )
 
-    # # EKF node
+    # EKF node
     # footprint_to_odom_ekf = Node(
     #     package='robot_localization',
     #     executable='ekf_node',
@@ -169,5 +167,6 @@ def generate_launch_description():
         # slam_toolbox_launch,
         cartographer_node,
         cartographer_occupancy_grid_node,
+        # footprint_to_odom_ekf,
         rviz2_node
     ])

@@ -47,7 +47,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 0.5
+    - Alpha: 1
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
       Description File: ""
@@ -210,7 +210,7 @@ Visualization Manager:
       Color Scheme: costmap
       Draw Behind: false
       Enabled: true
-      Name: Map
+      Name: Local Costmap
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -233,7 +233,7 @@ Visualization Manager:
       Color Scheme: costmap
       Draw Behind: false
       Enabled: true
-      Name: Map
+      Name: GLobal Costmap
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -276,6 +276,32 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /plan
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/Polygon
+      Color: 25; 255; 0
+      Enabled: true
+      Name: Polygon
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /local_costmap/published_footprint
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/Polygon
+      Color: 255; 0; 0
+      Enabled: true
+      Name: Polygon
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/published_footprint
       Value: true
   Enabled: true
   Global Options:
@@ -323,25 +349,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 35.30797576904297
+      Distance: 29.636171340942383
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -5.934574127197266
-        Y: -0.7919036746025085
-        Z: -0.005948439706116915
+        X: -5.433323860168457
+        Y: 1.2265410423278809
+        Z: -1.5875999927520752
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5547964572906494
+      Pitch: 1.4347968101501465
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.1404008865356445
+      Yaw: 3.145411968231201
     Saved: ~
 Window Geometry:
   Displays:
@@ -359,5 +385,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1390
-  X: 291
-  Y: 112
+  X: 2269
+  Y: 381
