@@ -22,7 +22,7 @@ rosdep install --from-paths src --ignore-src -r
 
 * **Automatic Exploration (Wall Following)**
   
-  I am using a wall-following algorithm to automatically explore the entire scene. The robot uses sensor data (LaserScan) to detect obstacles (walls), then moves along the walls while maintaining a safe distance. It smoothly handles turns and avoids obstacles, ensuring that all reachable areas in the scene are explored. See details in [https://github.com/ME495-EmbeddedSystems/homework-4-0nhc/blob/main/nubot_nav/explore.py](https://github.com/ME495-EmbeddedSystems/homework-4-0nhc/blob/main/nubot_nav/explore.py).
+  I am using a wall-following algorithm to automatically explore the entire scene. The robot uses sensor data (LaserScan) to detect obstacles (walls), then moves along the walls while maintaining a safe distance. It smoothly handles turns and avoids obstacles, ensuring that all reachable areas in the scene are explored. See details in [explore.py](https://github.com/ME495-EmbeddedSystems/homework-4-0nhc/blob/main/nubot_nav/explore.py).
   ```sh
   ros2 launch nubot_nav explore.launch.py
   ```
