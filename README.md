@@ -5,7 +5,7 @@ Author: [Zhengxiao Han (韩 政霄)](https://0nhc.github.io)
 `nubot_nav`: This package contains navigation application for nubot.
 
 ## Dependencies
-I am using `cartographer_ros` instead of `slam_toolbox` because the mapping performance of `slam_toolbox` is poor in the given scene. This issue may stem from inaccurate odometry provided by Gazebo, likely due to incorrect parameters in the diff_drive plugin.
+I am using `cartographer_ros` instead of `slam_toolbox` because the mapping performance of `slam_toolbox` is poor in the given scene. The issue likely arises from inaccurate odometry provided by Gazebo, possibly due to misconfigured parameters in the diff_drive plugin. I recommend reviewing the [nubot](https://github.com/m-elwin/nubot) package, as it might be related to the problem.
 
 To install the necessary dependencies, simply run the following commands:
 ```sh
