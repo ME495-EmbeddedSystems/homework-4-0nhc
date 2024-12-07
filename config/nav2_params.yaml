@@ -1,3 +1,4 @@
+############################# Begin_Citation [1] #############################
 # amcl:
 #   ros__parameters:
 #     alpha1: 0.2
@@ -103,16 +104,17 @@ controller_server:
       ax_min: -3.0
       ay_max: 3.0
       az_max: 3.5
-      vx_std: 0.75
+      vx_std: 1.5
       vy_std: 0.2
-      wz_std: 0.75
-      vx_max: 2.0
-      vx_min: -1.0
+      wz_std: 1.0
+      vx_max: 3.0
+      vx_min: -2.0
       vy_max: 0.5
-      wz_max: 1.9
+      wz_max: 5.0
+      wz_min: -5.0
       iteration_count: 1
       prune_distance: 1.7
-      transform_tolerance: 0.1
+      transform_tolerance: 0.5
       temperature: 0.3
       gamma: 0.015
       motion_model: "DiffDrive"
@@ -422,3 +424,4 @@ loopback_simulator:
     map_frame_id: "map"
     scan_frame_id: "base_scan"  # tb4_loopback_simulator.launch.py remaps to 'rplidar_link'
     update_duration: 0.02
+############################## End_Citation [1] ##############################

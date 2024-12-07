@@ -143,6 +143,14 @@ def generate_launch_description():
     #     ],
     # )
 
+    # Explore Node
+    explore_node = Node(
+        package='nubot_nav',
+        executable='explore',
+        name='explore',
+        output='screen'
+    )
+
     # RViz node (conditionally launched)
     rviz2_node = Node(
         name='rviz2',
@@ -168,5 +176,6 @@ def generate_launch_description():
         cartographer_node,
         cartographer_occupancy_grid_node,
         # footprint_to_odom_ekf,
+        # explore_node,
         rviz2_node
     ])
