@@ -12,24 +12,67 @@
 
 #   0. You just DO WHAT THE FUCK YOU WANT TO.
 
-import random
+"""
+The explore ROS 2 node for hopmework-4.
 
-import rclpy
-from rclpy.node import Node
-from rclpy.qos import QoSDurabilityPolicy, QoSProfile
-import numpy as np
+The explore node communicates through several ROS 2 protocols:
+
+PUBLISHERS:
+  + cmd_vel (geometry_msgs.msg.Twists) - Velocity for the robot.
+
+SUBSCRIBERS:
+  + scan (sensor_msgs.msg.LaserScan) - Laser scan data.
+
+ROS_PARAMETERS:
+  + front_distance_threshold (double) - Distance threshold to the
+        front of the robot.
+  + right_distance_threshold (double) - Distance threshold to the
+        right of the robot.
+  + left_distance_threshold (double) - Distance threshold to the
+        left of the robot.
+  + angular_z (double) - Angular velocity along Z axis.
+  + linear_x (double) - Linear velocity along X axis.
+  + init_time (double) - How long does it take to initialize.
+"""
+
 import math
 import time
 
 from geometry_msgs.msg import Twist
+
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import QoSDurabilityPolicy, QoSProfile
+
 from sensor_msgs.msg import LaserScan
 
 
-STOP = 0
-NAVIGATING = 1
-
 class Explore(Node):
+    """
+    The explore ROS 2 node for hopmework-4.
+
+    The explore node communicates through several ROS 2 protocols:
+
+    PUBLISHERS:
+    + cmd_vel (geometry_msgs.msg.Twists) - Velocity for the robot.
+
+    SUBSCRIBERS:
+    + scan (sensor_msgs.msg.LaserScan) - Laser scan data.
+
+    ROS_PARAMETERS:
+    + front_distance_threshold (double) - Distance threshold to the
+            front of the robot.
+    + right_distance_threshold (double) - Distance threshold to the
+            right of the robot.
+    + left_distance_threshold (double) - Distance threshold to the
+            left of the robot.
+    + angular_z (double) - Angular velocity along Z axis.
+    + linear_x (double) - Linear velocity along X axis.
+    + init_time (double) - How long does it take to initialize.
+    """
+
     def __init__(self):
+        """Initialize the explore ROS 2 node for hopmework-4."""
         super().__init__('explore')
         self._initialized = False
 
@@ -76,9 +119,16 @@ class Explore(Node):
 
     def _laser_callback(self,
                         msg: LaserScan):
+        """
+        Receiving the laser scan data.
+
+        :param msg: The laser scan data.
+        :type msg: sensor_msgs.msg.LaserScan
+        """
         self._laser_data = msg
 
     def _initialize(self):
+        """Move the robot a little bit to initialize the map."""
         self._twist.linear.x = 0.0
         self._twist.angular.z = self._angular_z
         self._cmd_publisher.publish(self._twist)
@@ -89,6 +139,7 @@ class Explore(Node):
         self._initialized = True
 
     def _timer_callback(self):
+        """Exploration process."""
         if not self._initialized:
             self._initialize()
         else:
@@ -103,9 +154,6 @@ class Explore(Node):
                     front_distance = self._laser_data.ranges[front_index]
                     right_distance = self._laser_data.ranges[right_index]
                     left_distance = self._laser_data.ranges[left_index]
-                    # self.get_logger().info(f'Front distance: {front_distance})
-                    # self.get_logger().info(f'Right distance: {right_distance}')
-                    # self.get_logger().info(f'Left distance: {left_distance}')
                     if front_distance < self._front_distance_threshold:
                         self._twist.linear.x = 0.0
                         self._twist.angular.z = self._angular_z
@@ -130,6 +178,7 @@ class Explore(Node):
 
 
 def main(args=None):
+    """Entry point for the explore ROS 2 node for hopmework-4."""
     rclpy.init(args=args)
     explore = Explore()
     rclpy.spin(explore)

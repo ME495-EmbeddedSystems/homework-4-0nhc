@@ -12,6 +12,8 @@
 
 #   0. You just DO WHAT THE FUCK YOU WANT TO.
 
+"""Launch file for exploration."""
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.conditions import UnlessCondition
@@ -21,9 +23,9 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, \
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+
 def generate_launch_description():
     """Generate launch description."""
-
     package_name = FindPackageShare('nubot_nav').find('nubot_nav')
     cartographer_config_dir = PathJoinSubstitution([package_name, 'config'])
     cartographer_config_basename = TextSubstitution(text='slam.lua')
@@ -32,48 +34,52 @@ def generate_launch_description():
     use_nubot_rviz = DeclareLaunchArgument(
         'use_nubot_rviz',
         default_value='false',
-        description="Launch Rviz in nubot or not."
+        description='Launch Rviz in nubot or not.'
     )
     world = DeclareLaunchArgument(
         'world',
         default_value='nubot_simple.sdf',
-        description="Which world to use."
+        description='Which world to use.'
     )
     rviz_config = DeclareLaunchArgument(
         'rviz_config',
-        default_value=[FindPackageShare('nubot_nav').find('nubot_nav'), '/rviz/slam.rviz'],
-        description="Customized Rviz configuration file."
+        default_value=[FindPackageShare('nubot_nav').find('nubot_nav'),
+                       '/rviz/slam.rviz'],
+        description='Customized Rviz configuration file.'
     )
     use_sim_time = DeclareLaunchArgument(
         'use_sim_time',
         default_value='true',
-        description="Use simulation clock or not."
+        description='Use simulation clock or not.'
     )
     use_jsp = DeclareLaunchArgument(
         'use_jsp',
         default_value='false',
-        description="Specify the Joint State Publisher to use."
+        description='Specify the Joint State Publisher to use.'
     )
     use_rviz = DeclareLaunchArgument(
         'use_rviz',
         default_value='false',
-        description="Use Rviz in nubot or not."
+        description='Use Rviz in nubot or not.'
     )
     nav2_params = DeclareLaunchArgument(
         'nav2_params',
-        default_value=[FindPackageShare('nubot_nav').find('nubot_nav'), '/config/nav2_params.yaml'],
-        description="Path to Nav2 params file."
+        default_value=[FindPackageShare('nubot_nav').find('nubot_nav'),
+                       '/config/nav2_params.yaml'],
+        description='Path to Nav2 params file.'
     )
 
     gazebo_world_launch = IncludeLaunchDescription(
-        [FindPackageShare('nubot_nav').find('nubot_nav'), '/launch/nubot_world.launch.xml'],
+        [FindPackageShare('nubot_nav').find('nubot_nav'),
+         '/launch/nubot_world.launch.xml'],
         launch_arguments={
             'world': LaunchConfiguration('world'),
         }.items()
     )
 
     nubot_rviz_launch = IncludeLaunchDescription(
-        [FindPackageShare('nubot').find('nubot'), '/launch/nubot_rviz.launch.py'],
+        [FindPackageShare('nubot').find('nubot'),
+         '/launch/nubot_rviz.launch.py'],
         launch_arguments={
             'use_jsp': LaunchConfiguration('use_jsp'),
             'use_rviz': LaunchConfiguration('use_rviz'),
@@ -88,7 +94,8 @@ def generate_launch_description():
 
     # Launch Nav2 stack
     nav2_bringup = IncludeLaunchDescription(
-        [FindPackageShare('nav2_bringup').find('nav2_bringup'), '/launch/bringup_launch.py'],
+        [FindPackageShare('nav2_bringup').find('nav2_bringup'),
+         '/launch/bringup_launch.py'],
         launch_arguments={
             'use_sim_time': LaunchConfiguration('use_sim_time'),
             'params_file': LaunchConfiguration('nav2_params')
