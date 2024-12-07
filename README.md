@@ -35,3 +35,7 @@ rosdep install --from-paths src --ignore-src -r
 * **Extended Kalman Filter (EKF)**: 
   
   I have tried adding IMU plugins in [my forked nubot repository](https://github.com/0nhc/nubot). With the IMU sensor, we could use `robot_localization` to fuse odometry and IMU data. However, as I have tried, the performance is still poor.
+
+* **Ground Truth Odometry**:
+  
+  As I have applied in [homework3](https://github.com/ME495-EmbeddedSystems/homework-3-0nhc/blob/main/diff_drive/urdf/ddrive.gazebo.xacro), Use odometry_publisher plugin to publish ground truth odometry.
